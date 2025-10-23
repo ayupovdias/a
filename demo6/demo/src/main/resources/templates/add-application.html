@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="main.html">
+<title layout:fragment="titleName">Add an application</title>
+<main layout:fragment="mainContent">
+    <form class="mt-2 w-50 mx-auto" th:action="@{/add-application}" method="post" >
+        <div class="row">
+            <label class="label-form">Fullname:
+                <input class="form-control" placeholder="Fullname:" required name="fullname">
+            </label>
+        </div>
+        <div class="row">
+            <label class="form-label">Choose a course
+                <select class="form-select" required name="select">
+                    <option value="Java Standard Edition">Java Standard Edition</option>
+                    <option value="Web Technologies">Web Technologies</option>
+                    <option value="Python Programming Language">Python Programming Language</option>
+                    <option value="Java Pro">Java Pro</option>
+                    <option value="UX/UI Design">UX/UI Design</option>
+                    <option value="Django Framework">Django Framework</option>
+                </select>
+            </label>
+        </div>
+        <div class="row">
+                <label class="form-label">Phone:
+                    <input class="form-control" placeholder="+7(7__)_______" required name="phone">
+                </label>
+        </div>
+        <div class="row">
+                <label class="form-label">Comment:
+                    <textarea class="form-control" rows="6" placeholder="Comment" required name="comment"></textarea>
+                </label>
+            </label>
+        </div>
+        <button type="submit" class="btn btn-success p-2 mt-2">Add an application</button>
+    </form>
+</main>
+</html>

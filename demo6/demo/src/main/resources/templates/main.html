@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title layout:fragment="titleName"></title>
+</head>
+<body class="container">
+<header class="bg-primary p-2 text-light">
+    <span class="ms-3 fs-4">CRM System</span>
+    <a href="/" class="ms-3 text-opacity-50 text-light text-decoration-none">All Applications</a>
+    <a href="/new-applications" class="ms-3 text-opacity-50 text-light text-decoration-none">New Applications</a>
+    <a href="/processed-applications" class="ms-3 text-opacity-50 text-light text-decoration-none">Processed Applications</a>
+    <a href="/add-application" class="ms-3 text-opacity-50 text-light text-decoration-none">+ Add Application</a>
+</header>
+<main layout:fragment="mainContent">
+
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
