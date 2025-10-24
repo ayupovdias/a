@@ -1,12 +1,15 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="main.html">
-<title layout:fragment="titleName">Detail</title>
+<title layout:fragment="titleName">Add an application</title>
 <main layout:fragment="mainContent">
-    <form class="mt-2 w-50 mx-auto" th:action="@{/add-application}" method="post" >
+    <div class="w-50 mt-2 mx-auto">
+        <h3 th:if="${!application.handled}" class="text-danger text-center">***New Unprocessed Application***</h3>
+        <h3 th:if="${!application.handled}" class="text-success text-center">Processed Application</h3>
+    <form th:action="@{'/detail/'+${application.id}+'/save '}" method="post" >
         <div class="row">
             <label class="label-form">Fullname:
-                <input class="form-control" placeholder="Fullname:" required name="fullname">
+                <input class="form-control bg-secondary" placeholder="Fullname:" required name="fullname" th:value="${application.userName}">
             </label>
         </div>
         <div class="row">
@@ -23,16 +26,20 @@
         </div>
         <div class="row">
             <label class="form-label">Phone:
-                <input class="form-control" placeholder="+7(7__)_______" required name="phone">
+                <input class="form-control" placeholder="+7(7__)_______" required name="phone" th:value="${application.phone}">
             </label>
         </div>
         <div class="row">
             <label class="form-label">Comment:
-                <textarea class="form-control" rows="6" placeholder="Comment" required name="comment"></textarea>
+                <textarea class="form-control" rows="6" placeholder="Comment" required name="comment" th:value="${application.comment}"></textarea>
             </label>
             </label>
         </div>
-        <button type="submit" class="btn btn-success p-2 mt-2">Add an application</button>
+        <button th:if="${!application.handled}"} type="submit" class="btn btn-success p-2 mt-2">Save</button>
     </form>
+    <form th:action="@{'/detail/'+${application.id}+'/delete'}" method="post" class="mt-2">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    </div>
 </main>
 </html>

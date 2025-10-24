@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -76,5 +77,48 @@ public class MainController {
         }
         model.addAttribute("applications",processedApplications);
         return "processed-applications";
+    }
+    @GetMapping(value="detail/{id}")
+    public String detail(Model model, @PathVariable("id") Long id){
+        ApplicationRequest application=repositoryApplicationRequest.findById(id).orElse(null);
+        if(application!=null) {
+            model.addAttribute("application", application);
+            return "detail";
+        }
+
+        model.addAttribute("id", id);
+        return "notFound";
+
+    }
+    @PostMapping(value="/detail/{id}/save")
+    public String change(@PathVariable("id") Long id,
+                         @RequestParam(name="fullname") String name,
+                         @RequestParam(name="select") String select,
+                         @RequestParam(name="phone") String phone,
+                         @RequestParam(name="comment") String comment,
+                         Model model){
+        ApplicationRequest application=repositoryApplicationRequest.findById(id).orElse(null);
+        if(application!=null) {
+            application.setUserName(name);
+            application.setCourseName(select);
+            application.setComment(comment);
+            application.setPhone(phone);
+            application.setHandled(true);
+            repositoryApplicationRequest.save(application);
+            return "redirect:/detail/" + application.getId()+"/save";
+        }
+        model.addAttribute("id", id);
+        return "notFound";
+
+    }
+    @PostMapping(value="/detail/{id}/delete")
+    public String deleteApplication(@PathVariable("id") Long id, Model model){
+        ApplicationRequest application=repositoryApplicationRequest.findById(id).orElse(null);
+        if(application!=null){
+            repositoryApplicationRequest.deleteById(id);
+            return "redirect:/";
+        }
+        model.addAttribute("id", id);
+        return "notFound";
     }
 }

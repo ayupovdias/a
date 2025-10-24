@@ -1,0 +1,8 @@
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="main.html">
+<title layout:fragment="titleName">Status code 404</title>
+<main layout:fragment="mainContent">
+    <h2 class="text-center" th:text="'Id number '+${id} is not found"></h2>
+</main>
+</html>
